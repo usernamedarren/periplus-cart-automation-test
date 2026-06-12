@@ -32,11 +32,13 @@ public class ProductDetailPage {
         }
         driver.findElement(addToCartButton).click();
         
-        wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(popupCloseButton));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(popupCloseButton));
         driver.findElement(popupCloseButton).click();
     }
 
     public void showCart(){
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(popupCloseButton));
         driver.findElement(cartButton).click();
     }
 
