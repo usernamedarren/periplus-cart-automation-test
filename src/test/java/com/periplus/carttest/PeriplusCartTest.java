@@ -37,6 +37,14 @@ public class PeriplusCartTest {
         loginPage.Login(email, password);
     }
 
+    @Test(dependsOnMethods = {"testLogin"})
+    public void testSearchItem(){
+        HomePage homePage = new HomePage(driver);
+        homePage.searchItem("Days at the Morisaki Bookshop");
+    }
+
+    @Test(dependsOnMethods = {""})
+
     @AfterClass
     public void exitBrowser(){
         driver.quit();

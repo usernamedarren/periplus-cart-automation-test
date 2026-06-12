@@ -17,4 +17,8 @@ public class HomePage {
         driver.findElement(signInButton).click();
     }
 
+    public void searchItem(String item){
+        driver.findElement(searchTextbox).sendKeys("item");
+    }
+
 }
