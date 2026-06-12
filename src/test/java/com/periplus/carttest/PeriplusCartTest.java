@@ -9,6 +9,7 @@ import org.testng.annotations.*;
 
 public class PeriplusCartTest {
     WebDriver driver;
+    String productName;
 
     @DataProvider(name = "loginData")
     public Object[][] loginData() {
@@ -40,13 +41,20 @@ public class PeriplusCartTest {
     @Test(dependsOnMethods = {"testLogin"})
     public void testSearchItem(){
         HomePage homePage = new HomePage(driver);
-        homePage.searchItem("Days at the Morisaki Bookshop");
+        homePage.searchItem("Spy School Secret Service");
     }
 
     @Test(dependsOnMethods = {"testSearchItem"})
     public void testAddToCart(){
         ProductPage productPage = new ProductPage(driver);
-        productPage.addToCart();
+        productPage.checkProductDetail();
+
+        ProductDetailPage productDetailPage = new ProductDetailPage(driver);
+
+        productDetailPage.addToCart();
+        productDetailPage.showCart();
+
+        this.productName = productDetailPage.getProductName();
     }
 
     @AfterClass
