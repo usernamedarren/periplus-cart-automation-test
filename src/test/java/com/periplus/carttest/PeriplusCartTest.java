@@ -4,7 +4,7 @@ import java.time.Duration;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-
+import org.testng.Assert;
 import org.testng.annotations.*;
 
 public class PeriplusCartTest {
@@ -49,9 +49,24 @@ public class PeriplusCartTest {
         ProductDetailPage productDetailPage = new ProductDetailPage(driver);
 
         this.productName = productDetailPage.getProductName();
-        
+
         productDetailPage.addToCart();
         productDetailPage.showCart();
+    }
+
+    @Test(dependsOnMethods = {"testAddToCart"})
+    public void testVerifyCart(){
+        CartPage cartPage = new CartPage(driver);
+        boolean isMatched = cartPage.verifyProductInCart(productName);
+
+            if (isMatched) {
+                System.out.println("Product " + productName + " is found in the cart.");
+            } else {
+                System.out.println("Product " + productName + " is not found!");
+            }
+
+        Assert.assertTrue(isMatched, "Product " + productName + " is not found!");
+
     }
 
     @AfterClass
