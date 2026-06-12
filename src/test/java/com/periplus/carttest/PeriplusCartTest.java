@@ -48,10 +48,10 @@ public class PeriplusCartTest {
 
         ProductDetailPage productDetailPage = new ProductDetailPage(driver);
 
+        this.productName = productDetailPage.getProductName();
+        
         productDetailPage.addToCart();
         productDetailPage.showCart();
-
-        this.productName = productDetailPage.getProductName();
     }
 
     @AfterClass
