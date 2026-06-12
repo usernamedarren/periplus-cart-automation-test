@@ -1,0 +1,8 @@
+target/
+
+test-output/
+
+.vscode/
+
+.settings/
+.project
