@@ -43,7 +43,11 @@ public class PeriplusCartTest {
         homePage.searchItem("Days at the Morisaki Bookshop");
     }
 
-    @Test(dependsOnMethods = {""})
+    @Test(dependsOnMethods = {"testSearchItem"})
+    public void testAddToCart(){
+        ProductPage productPage = new ProductPage(driver);
+        productPage.addToCart();
+    }
 
     @AfterClass
     public void exitBrowser(){
