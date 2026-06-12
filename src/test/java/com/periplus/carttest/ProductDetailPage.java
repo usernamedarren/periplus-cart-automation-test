@@ -14,6 +14,7 @@ public class ProductDetailPage {
     By addToCartButton = By.className("btn-add-to-cart");
     By cartButton = By.id("show-your-cart");
     By preloader = By.className("preloader");
+    By popupCloseButton = By.className("btn-modal-close");
 
     public ProductDetailPage(WebDriver driver){
         this.driver = driver;
@@ -30,6 +31,9 @@ public class ProductDetailPage {
             wait.until(ExpectedConditions.invisibilityOfElementLocated(preloader));
         }
         driver.findElement(addToCartButton).click();
+        
+        wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(popupCloseButton));
+        driver.findElement(popupCloseButton).click();
     }
 
     public void showCart(){
