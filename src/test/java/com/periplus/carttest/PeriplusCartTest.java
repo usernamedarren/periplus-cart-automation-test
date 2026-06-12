@@ -26,10 +26,7 @@ public class PeriplusCartTest {
         driver.get("https://www.periplus.com/");
     }
     
-    @Test(
-        dataProvider = "loginData",
-        dependsOnMethods = "setupBrowser"
-    )
+    @Test(dataProvider = "loginData")
     public void testLogin(String email, String password){
         HomePage homePage = new HomePage(driver);
         homePage.signIn();
